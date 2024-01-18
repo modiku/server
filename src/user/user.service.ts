@@ -2,18 +2,34 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
+import { User } from './entities/user.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 @Injectable()
 export class UserService {
+  constructor (@InjectRepository(User) private readonly user:Repository<User>){}
+
   create(createUserDto: CreateUserDto) {
     return 'This action adds a new user';
   }
 
   findAll() {
-    return `This action returns all user`;
+    return this.user.find()
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  findOne(number: string) {
+    if(number == ''){
+      return {
+        message:'账号不能为空'
+      }
+    }else{
+      return this.user.find({
+        where:{
+          number:number
+        }
+      });
+    }
+   
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
