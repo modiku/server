@@ -7,10 +7,18 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 @Injectable()
 export class UserService {
-  constructor (@InjectRepository(User) private readonly user:Repository<User>){}
+  constructor(@InjectRepository(User) private readonly user: Repository<User>) { }
 
   create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+    const data = new User();
+    data.number = createUserDto.number
+    data.name = createUserDto.name
+    data.password = createUserDto.password
+    data.authority = createUserDto.authority
+    this.user.save(data)
+    return {
+      message: '注册成功'
+    }
   }
 
   findAll() {
@@ -18,25 +26,42 @@ export class UserService {
   }
 
   findOne(number: string) {
-    if(number == ''){
+    if (number == '') {
       return {
-        message:'账号不能为空'
+        message: '账号不能为空'
       }
-    }else{
+    } else {
       return this.user.find({
-        where:{
-          number:number
+        where: {
+          number: number
         }
       });
     }
-   
+
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  update(number: string, updateUserDto: UpdateUserDto) {
+    // console.log(updateUserDto)
+    const data = new User()
+    data.number = updateUserDto.number
+    data.name = updateUserDto.name
+    data.password = updateUserDto.password
+    data.authority = updateUserDto.authority
+    // console.log(data)
+    this.user.update(number,data)
+    return {
+      message:'修改成功'
+    }
+
+    // return "你好"
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  remove(number: string) {
+    // console.log(number)
+    
+    this.user.delete(number);
+    return {
+      message:'删除成功'
+    }
   }
 }

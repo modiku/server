@@ -11,6 +11,7 @@ export class UserController {
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
+    console.log(createUserDto)
     return this.userService.create(createUserDto);
   }
 
@@ -27,13 +28,14 @@ export class UserController {
     return this.userService.findOne(number);
   }
 
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-  //   return this.userService.update(+id, updateUserDto);
-  // }
+  @Patch(':number')
+  update(@Param('number') number: string, @Body() updateUserDto: UpdateUserDto) {
+    // console.log(updateUserDto)
+    return this.userService.update(number, updateUserDto);
+  }
 
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.userService.remove(+id);
-  // }
+  @Delete(':number')
+  remove(@Param('number') number: string) {
+    return this.userService.remove(number);
+  }
 }
