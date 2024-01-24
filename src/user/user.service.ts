@@ -47,13 +47,14 @@ export class UserService {
     data.name = updateUserDto.name
     data.password = updateUserDto.password
     data.authority = updateUserDto.authority
+    data.userAvaterUrl = updateUserDto.userAvaterUrl
+    data.description = updateUserDto.description
     // console.log(data)
     this.user.update(number,data)
     return {
       message:'修改成功'
     }
 
-    // return "你好"
   }
 
   remove(number: string) {

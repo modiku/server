@@ -3,4 +3,6 @@ export class CreateUserDto {
     password:string
     name:string
     authority:number
+    userAvaterUrl:string
+    description:string
 }

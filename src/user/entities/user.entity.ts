@@ -17,4 +17,16 @@ export class User {
 
    @CreateDateColumn()
    date:Date
+
+   @Column({
+      nullable:true,
+      default:null
+   })
+   userAvaterUrl:string
+
+   @Column({
+      nullable:true,
+      default:null
+   })
+   description:string
 }
