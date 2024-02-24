@@ -9,4 +9,8 @@ export const MYSQLCONFIG:any = {
     retryDelay: 500, //重试连接数据库间隔
     retryAttempts: 10, //重试连接数据库的次数
     autoLoadEntities: true, //如果为true,将自动加载实体 forFeature()方
+    extra:{
+        timezone:'Asia/Shanghai',
+        dateStrings:true,
+    },
 }

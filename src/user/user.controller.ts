@@ -30,6 +30,8 @@ export class UserController {
     return this.userService.findOne(number);
   }
 
+
+
   @Patch(':number')
   @ApiOperation({summary:"更新用户数据",description:""})
   @ApiParam({name:"number",description:"用户账号",required:true})
@@ -45,4 +47,5 @@ export class UserController {
   remove(@Param('number') number: string) {
     return this.userService.remove(number);
   }
+
 }

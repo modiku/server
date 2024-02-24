@@ -32,6 +32,7 @@ export class UserService {
       }
     } else {
       return this.user.find({
+        relations: ["orders"],
         where: {
           number: number
         }
@@ -39,6 +40,10 @@ export class UserService {
     }
 
   }
+
+
+
+
 
   update(number: string, updateUserDto: UpdateUserDto) {
     // console.log(updateUserDto)
@@ -50,19 +55,19 @@ export class UserService {
     data.userAvaterUrl = updateUserDto.userAvaterUrl
     data.description = updateUserDto.description
     // console.log(data)
-    this.user.update(number,data)
+    this.user.update(number, data)
     return {
-      message:'修改成功'
+      message: '修改成功'
     }
 
   }
 
   remove(number: string) {
     // console.log(number)
-    
+
     this.user.delete(number);
     return {
-      message:'删除成功'
+      message: '删除成功'
     }
   }
 }

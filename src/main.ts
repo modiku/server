@@ -23,7 +23,6 @@ async function bootstrap() {
   app.useStaticAssets(join("C:/Users/10420/Desktop/final_work_note/images",),{
     prefix:"/static"
   })
-
   await app.listen(3000);
 }
 bootstrap();
